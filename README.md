@@ -4,7 +4,7 @@
 -python --v : 3.13.3<br>
 -ai: claude <br>
 -docker<br>
-3.크롤링 사이트: steam 
+3.크롤링 사이트: steam <br>
 4.전체 아키텍처 흐름 <br>
 [1] Python MCP 서버 (크롤링 + 전송)<br>
        ↓ (HTTP POST, 비동기)<br>
