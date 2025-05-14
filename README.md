@@ -9,5 +9,5 @@
 [1] Python MCP 서버 (크롤링 + 전송)<br>
        ↓ (HTTP POST, 비동기)<br>
 [2] Java Spring Boot REST API (수신 + 변환 + 저장)<br>
-       ↓ (JPA or MyBatis)<br>
+       ↓ (JPA)<br>
 [3] Docker 내부 PostgreSQL 컨테이너 (데이터 저장소)<br>
