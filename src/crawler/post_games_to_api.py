@@ -6,17 +6,44 @@ import asyncio
 mcp = FastMCP("WebCrawler")
 
 STEAM_HEADERS = {
-    "User-Agent": "Mozilla/5.0"
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://store.steampowered.com/",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Cache-Control": "no-cache",
+    "Pragma": "no-cache",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1"
 }
+
 
 STEAM_COOKIES = {
     "birthtime": "568022401",
     "lastagecheckage": "1-January-1988",
     "mature_content": "1"
 }
-
+@mcp.tool()
+async def inspect(input: dict) -> dict:
+    """
+    MCP Inspector에서 호출되는 기본 진입점.
+    Test용 코드
+    """
+    try:
+        games = await get_top_100_games_async()
+        return {
+            "status": "success",
+            "count": len(games),
+            "sample": games[:3]
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "message": str(e)
+        }
 
 async def fetch_detail(client, title, url):
+    """상세페이지"""
     try:
         resp = await client.get(url, headers=STEAM_HEADERS, cookies=STEAM_COOKIES)
         soup = BeautifulSoup(resp.text, "html.parser")

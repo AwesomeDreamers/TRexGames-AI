@@ -1,10 +1,10 @@
 """Test for base64 encoding issue in MCP server.
 
-This test demonstrates the issue in server.py where the server uses
+This test demonstrates the issue in post_games_to_api.py where the server uses
 urlsafe_b64encode but the BlobResourceContents validator expects standard
 base64 encoding.
 
-The test should FAIL before fixing server.py to use b64encode instead of
+The test should FAIL before fixing post_games_to_api.py to use b64encode instead of
 urlsafe_b64encode.
 After the fix, the test should PASS.
 """
