@@ -1,0 +1,1 @@
+from .post_games_to_api import get_top_100_games_async, fetch_detail
