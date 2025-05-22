@@ -87,14 +87,14 @@ async def fetch_detail(client, title, url):
 
 @mcp.tool()
 async def get_top_100_games_async() -> list[dict]:
-    """스팀 인기 게임 100개 (성인인증-> 쿠키 헤더 적용으로 우회해서 진입)"""
+    """스팀 인기 게임 2000개이상 (성인인증-> 쿠키 헤더 적용으로 우회해서 진입)"""
     games = []
     base_url = "https://store.steampowered.com/search/?filter=topsellers&page="
 
     async with httpx.AsyncClient(timeout=20.0) as client:
         tasks = []
 
-        for page in range(1, 5):
+        for page in range(1,100):
             url = f"{base_url}{page}"
             resp = await client.get(url, headers=STEAM_HEADERS)
             soup = BeautifulSoup(resp.text, "html.parser")
